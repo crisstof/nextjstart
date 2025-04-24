@@ -4,7 +4,86 @@ npm install
 npm run dev #lance l'application
 
 
+
+
+
+
+
+
+
+
 **********************************Docker**************************************
+ajouter les fichiers Dockerfile et
+.dockerignore:
+-------------
+node_modules
+.next
+.git
+npm-debug.log
+.dockerignore
+Dockerfile
+COMMANDS:
+--------
+ # Construire l'image
+> docker build -t nextjs-app .
+# Lancer le conteneur
+>docker run -p 3000:3000 nextjs-app 
+
+
+> docker images
+> docker ps -a
+> docker pull <image>
+> docker run <image>
+> docker stop <id_conteneur>
+> docker rmi <id_image> docker rmi -f <id_image> ou docker rm <id_image>
+> docker logs <id_conteneur>
+> docker system prune -a   #Nettoyage complet (image+conteneurs+réseaux) !!ma tout effacé
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
