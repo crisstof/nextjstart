@@ -1,11 +1,131 @@
-*********NextJS*****************
+**********************************NextJS**************************************
+Qaund on récupère le projet depuis github:
+npm install
+npm run dev #lance l'application
 
 
-*********Docker*****************
+**********************************Docker**************************************
 
 
 
 
-*********Github*****************
-Si on a un git avec une adresse différente de notre repository.
-Et qu'on veut pousser dans un autre compte.
+**********************************Github**************************************
+Collaborer sur un projet github:
+-------------------------------
+Générer une clé ssh du compte github de ce projet:
+ssh-keygen -t rsa -b 4096 -C "joseph.gaston.criss@gmail.com"
+key.public  keyprivate
+
+démarrer l'agent ssh et ajouter la clé à l'agent ssh
+windows le service n'est probablement pas démarrer:
+> Get-Service ssh-agent
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  ssh-agent          OpenSSH Authentication Agent
+
+> Set-Service ssh-agent -StartupType Manual
+> Start-Service ssh-agent
+> Get-Service ssh-agent
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  ssh-agent          OpenSSH Authentication Agent
+
+> Set-Service ssh-agent -StartupType Automatic  #pour le démarrage à chaque démarrage du pc
+ajoute la clé private
+> ssh-add C:\Users\Administrateur\.ssh\keyprivate
+
+
+
+
+Ajouter au pc la clé private ssh:
+C:\Users\Administrateur\.ssh\keyprivate
+ajoute le fichier config:-------------------------
+# Compte GitHub Josph
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/josphnextjstart
+  IdentitiesOnly yes
+
+# Compte GitHub Joegcv
+Host github.joegcv
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/joegcv
+  IdentitiesOnly yes
+---------------------------------------------------
+
+
+
+Ajouter la clé publique à GitHub:
+copié la clé public 
+cat josph.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCrs8BfprmB2OnFMme69/6XggzK49M/w4hH20MbPeYmyfPUSd1NCdjoUgFawSMQgB5lXsrvPHtbCG1wYRgm7s99iIUepCPXLXojdLnAdt4KzmG3wvlHgpWug07v6eZ8JLWFSGgL4MJPggg9iCThg/cJ6ln0qvIn2qRI36vMpIOT6RmWnIWgtaqGaXCLePdVeQoPLhh/GbKHAwHhqs+REUSoMKljDIN7Ck3q6WOaDKIqBwM9sI3dGnE1jaTpnxLWTZ7uf5GSZfxg1MNXWAwJFJ1MuIJ24YOW3OgeoT7pFgiNKWySZWA/E1qU5Q5LLD764xOCYrmrTF4ubKLFBmXRpmJePJfiWuMrLKsEBvTvhqlPJDZxH3/ZSeO+N2ug+EwDjSmCAnCF0LMs4p1sV6U/vWDwDTgeXS6YtirFTXM5NepxXpTWzNrGQhC6V04fRAU8/5Elg+Y6y6XqEGXdVpClZsYlBMLHHtpJnyE2iUH2J1uaB0EWt/LeBZnSDG3Tqcge+mE0qhLbGGU5rFDspDU3J77v1g2u2tTqEv1xakPThksfDKIj4raSwHmEro3TTfggaB3eKeiEn3cPHbUbIVQOXe0t71NqNqobRufONeA3QNaD/MwiucHgMdS8oeb43rrIRUekVjXks1MPobIIUrGS8U/yDQZNeMvLFg4fEP5e0jjHGQ== Josphvt@gmail.com
+
+GitHub/setting/ssh and gpg keys, clique sur New SSH key, colle la clé publique, donne-lui un nom, puis valide
+              / Deploy keys / Add key
+
+
+Comme nous avons crée un projet avec > npx create-next-app@latest
+il crée un git mais alors il faut pousser le projet dans un repository de GitHub ?
+
+
+******Lier le dépôt et le repository***********************************************************
+Lier ton dépôt local au repository GitHub
+https
+git remote add origin https://github.com/<ton-utilisateur>/<nom-du-repo>.git
+
+ssh********notre cas*****
+git remote add origin git@github.com:<ton-utilisateur>/<nom-du-repo>.git
+> git remote add origin https://github.com/Joegcv/nextstart.git
+
+error: remote origin already exists. ? Si on veut changer la liaison déjà faite:
+bonne pratique de modifier l'URL du remote existant (mettre à jour l'URL du remote origin sans supprimer ni recréer quoi qe ce soit)
+git remote set-url origin git@github.com:Joegcv/nextjstart.git
+
+Alternative 
+Supprime puis recréer le remote (moins recommandé si on veut repartir de zéro)
+git remote remove origin
+git remote add origin git@github.com:Joegcv/nextjstart.git
+
+Renommer le remote existant (conserve l'ancienne configuration sous un autre nom)
+git remote rename origin ancien-origin
+git remote add origin git@github.com:Joegcv/nextjstart.git
+
+
+Vérifiez la configuration actuelle avec
+git remote -v pour lister les dépôts distants associés à votre dépôt local.  (souvent origin)
+git branch --all  pour le local  main
+Test la connexion
+PS C:\Users\Administrateur\.ssh> ssh -T git@github.com
+Pousser
+git push -u origin master 
+
+Pour pousser le projet ou quand on clone ce projet il faut que le compte github
+nous ajoute comme collaborateur Setting/collaborators ajouter le login github
+et valider par mail.
+
+nous pouvons maintenant travailler directement
+> git add .
+> git commit -m "Initial commit"
+> git push
+
+
+*********************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
