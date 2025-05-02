@@ -1,5 +1,5 @@
 **********************************NextJS**************************************
-Qaund on récupère le projet depuis github:
+Quand on récupère le projet depuis github:
 npm install
 npm run dev #lance l'application
 
