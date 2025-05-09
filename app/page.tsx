@@ -1,4 +1,10 @@
 import Image from "next/image";
+import Nav from "../src/components/nav";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Oswald } from "next/font/google";
+import Link from "next/link";
+import { Button, buttonVariants } from "@/src/components/ui/button";
 
 export default function Home() {
   return (
@@ -49,7 +55,35 @@ export default function Home() {
           >
             Read our docs
           </a>
-        </div>
+         </div>
+         <div ><Nav/></div>
+         <div>
+         <Card>
+        <CardHeader>
+          <CardTitle>URL :/</CardTitle>
+        </CardHeader>
+        <CardContent>
+              <Link 
+              href="/admin" className={buttonVariants({ size: "lg", variant: "outline"})}
+              >
+                /admin
+              </Link>
+  
+        </CardContent>
+      </Card>
+
+
+         </div>
+
+
+         <div >
+          <h2>Lien externe</h2>
+          <p><a href="https://www.google.fr"
+             target="_blank" data-wpel-link="external" 
+             rel="external noopener noreferrer">
+              aller vers la page de google
+              </a> </p>
+         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a

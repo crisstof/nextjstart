@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+//ajout
+import { Oswald } from "next/font/google";
+import { Header } from "../src/components/header";
+//end
+
 import "./globals.css";
+
+//ajout
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+});
+//end
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable}  antialiased`}
       >
+        <Header/>
         {children}
       </body>
     </html>
