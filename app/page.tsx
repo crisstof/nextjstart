@@ -1,5 +1,9 @@
+'use client'  
+import {useState} from "react";
+
 import Image from "next/image";
 import Nav from "../src/components/nav";
+import styles from "./page.module.css";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Oswald } from "next/font/google";
@@ -7,7 +11,21 @@ import Link from "next/link";
 import { Button, buttonVariants } from "@/src/components/ui/button";
 
 export default function Home() {
+
+  const [clients, setClients] = useState([
+    {nom:"Durant",prenom:"Paul",ville:"Marseille", cacher:false},
+    {nom:"Jean",prenom:"Marcel",ville:"Paris", cacher:false},
+    {nom:"Marie",prenom:"Michelle",ville:"Toulouse", cacher:false}
+  ])
+  //effacer le client quand on clique dessus
+  let effacerClient = (index: number) => {
+    let updateCLient = [...clients]
+    updateCLient[index].cacher = true
+    setClients(updateCLient)
+  }
+
   return (
+    
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <Image
@@ -84,6 +102,36 @@ export default function Home() {
               aller vers la page de google
               </a> </p>
          </div>
+
+         <div>
+         <span className="material-symbols-outlined"> home </span>
+         <h2>TEST useState</h2>
+         <div className={`${styles.oswald} bordure`}>
+        <h1>Bonjour</h1>
+        <p>Lorem ipsum.</p>
+        <ul>
+          {clients.map((client, index)=>( //affiche les clients qui ne sont pas de Paris
+              (client.ville !== "Paris" && client.cacher === false) ?
+                <li 
+                key={index} 
+                className="cursor-pointer"  //avec tailwind sinon sans css externe: style={{ cursor: 'pointer' }}
+                onClick={()=>effacerClient(index)}
+                >
+                {client.nom}, {client.prenom}, {client.ville}, {index}</li>:""
+              ))
+          }
+        </ul>
+       
+
+      </div>
+
+
+
+
+
+
+
+         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
@@ -133,5 +181,6 @@ export default function Home() {
         </a>
       </footer>
     </div>
+  
   );
 }

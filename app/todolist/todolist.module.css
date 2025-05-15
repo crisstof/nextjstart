@@ -1,0 +1,111 @@
+/* page.module.css */
+
+/* Styles généraux pour la page */
+.div {
+    font-family: var(--font-inter); /* Utilise la police Inter */
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+    padding: 30px;
+  }
+  
+  /* Styles pour la div contenant le formulaire et la liste des tâches */
+  .div {
+    width: 75%; /* Largeur de la div */
+    margin: auto; /* Centre la div horizontalement */
+    background-color: #ecf0f1; /* Couleur de fond */
+    padding: 20px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+  }
+  
+  /* Styles pour les titres (h3 et h4) */
+  .div h3,
+  .div h4 {
+    color: #ce392b; /* Couleur du texte */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center; /* Centre verticalement l'icône et le texte */
+  }
+  
+  /* Styles pour les icônes dans les titres */
+  .div h3 span,
+  .div h4 span {
+    color: #e74c3c; /* Couleur de l'icône */
+    margin-right: 9px; /* Espacement entre l'icône et le texte */
+  }
+  
+  /* Styles spécifiques pour le titre h4 */
+  .div h4 {
+    margin-top: 15px;
+    border-top: 1px dashed #ccc; /* Bordure supérieure en pointillés */
+    padding-top: 4px;
+  }
+  
+  /* Styles pour les inputs (champs de texte et bouton submit) */
+  .div input {
+    padding: 12px;
+    border: 1px solid #ccc; /* Bordure */
+    outline: none; /* Supprime la bordure au focus */
+    border-radius: 7px; /* Coins arrondis */
+    margin: 5px;
+  }
+  
+  /* Style pour le placeholder des inputs */
+  .div input::placeholder {
+    color: #aaa; /* Couleur du placeholder */
+  }
+  
+  /* Style spécifique pour le bouton submit */
+  .div input[type="submit"] {
+    text-transform: capitalize; /* Met la première lettre en majuscule */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+    font-size: 0.8rem;
+    font-weight: 700; /* Texte en gras */
+    color: #777;
+    cursor: pointer; /* Change le curseur en main au survol */
+  }
+  
+  /* Style pour le bouton submit au survol */
+  .div input[type="submit"]:hover {
+    color: #000; /* Change la couleur du texte au survol */
+  }
+  
+  /* Styles pour la liste des tâches */
+  .task-list {
+    width: 100%; /* Prend toute la largeur de la div parent */
+    margin-top: 20px;
+  }
+  
+  .task-list ul {
+    list-style-type: none; /* Supprime les puces de la liste */
+    padding: 0;
+  }
+  
+  .task-list li {
+    display: flex;
+    align-items: center; /* Centre verticalement les éléments */
+    justify-content: space-between; /* Espacement égal entre les éléments */
+    padding: 10px;
+    border-bottom: 1px solid #eee; /* Bordure inférieure */
+  }
+  
+  /* Styles pour le bouton de suppression (delete) */
+  .delete {
+    background: none;
+    border: none;
+    color: #777;
+    cursor: pointer; /* Change le curseur en main au survol */
+    transition: 0.6s; /* Animation de transition */
+  }
+  
+  .delete:hover {
+    color: #000; /* Change la couleur au survol */
+  }
+  
+  .delete span {
+    font-size: 1rem;
+  }
+  
