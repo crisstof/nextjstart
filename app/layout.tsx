@@ -3,11 +3,18 @@ import { Geist, Geist_Mono } from "next/font/google";
 //ajout
 import { Oswald } from "next/font/google";
 import { Header } from "../src/components/header";
+import {Inter} from "next/font/google"
 //end
 
 import "./globals.css";
 
 //ajout
+const inter = Inter({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+});
+
+
 const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
@@ -43,7 +50,7 @@ export default function RootLayout({
          
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable}  antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${inter.variable}  antialiased`}
       >
         <Header/>
         {children}
