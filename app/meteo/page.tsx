@@ -15,7 +15,7 @@ let meteo = async()=>{
   try {
     setLoad(true);//ajout
     const url = "https://api.openweathermap.org/data/2.5/weather?" +
-                                "q="+country+"&appid=e7e9cc9e02aef675f9da7a76b2213f58&units=metric";
+                                "q="+country+"&appid=xxxxxxxxxxxxxxxxxxxxxxx&units=metric";
     let res = await fetch(url);
     if (!res.ok) {
       throw new Error('Erreur lors de la récupération des données météo');
