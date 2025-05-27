@@ -1,0 +1,62 @@
+Objectif:
+- Traiter un pdf et enregistrer les données dans une feuille googleSheet
+
+Formulaire: /app/enrgpdf/page.tsx
+<form action="/api/upload" method="POST" encType="multipart/form-data">
+  <input type="file" name="pdf" accept="application/pdf" required />
+  <button type="submit">Envoyer</button>
+</form>
+
+Traitement: /app/api/upload/route.js
+import formidable from "formidable";
+import fs from "fs";
+import fetch from "node-fetch"; // ou global fetch selon ta version
+
+export const POST = async (req, res) => {
+  const form = new formidable.IncomingForm();
+
+  form.parse(req, async (err, fields, files) => {
+    if (err) return res.status(500).json({ error: "Erreur upload" });
+
+    const pdfFile = files.pdf;
+    const fileStream = fs.createReadStream(pdfFile.filepath);
+
+    // Envoi à n8n via un Webhook (adapte l'URL)
+    const n8nResponse = await fetch("https://ton-n8n.com/webhook/form-submission", {
+      method: "POST",
+      headers: { "Content-Type": "application/pdf" },
+      body: fileStream,
+    });
+
+    if (n8nResponse.ok) {
+      return res.status(200).json({ success: true });
+    } else {
+      return res.status(500).json({ error: "Erreur n8n" });
+    }
+  });
+};
+
+n8n:
+Utiliser le webhook pour envoyer les données à n8n.
+depuis ce dernier recevoir les requêtes POST de ton API Next.js.
+Le workflow peut ensuite traiter le PDF (stcokage, parsing etc)
+
+ Masquer n8n et préparer l’architecture pour d'autres backends:
+ Toute la logique d'intégration avec n8n est encapsulée côté serveur dans Next.js (dans l’API Route).
+ Si tu veux changer de backend, il suffit de modifier cette couche d'intégration, sans impacter le frontend.
+ Cette architecture te permet de garder la flexibilité pour brancher d'autres systèmes plus tard
+
+Points clés à retenir:
+ Utilise une API Route Next.js comme proxy backend entre ton frontend et n8n.
+ Le formulaire Next.js ne connaît pas n8n : il envoie les fichiers à ton backend, qui s’occupe de tout.
+ Pour l’upload de fichiers, pense à bien gérer le parsing du multipart/form-data côté serveur.
+ La logique d’envoi à n8n se fait via un Webhook HTTP (ou l’API n8n si besoin)
+
+
+
+Liens:
+ https://www.formationnextjs.fr/ressources/route-handlers-et-fichiers
+
+
+
+
